@@ -1,0 +1,13 @@
+<ion-view view-title="Search">
+    
+  <ion-nav-buttons side="Primary">
+      <button class="button button-clear" ng-click="goHome()">Home</button>
+  </ion-nav-buttons>
+  <ion-nav-buttons side="secondary">
+      <button class="button button-clear" ng-click="showList()">List</button>
+  </ion-nav-buttons>
+
+  <ion-content class="padding"  delegate-handle="mainScroll">
+    <div id="divCalendar" ui-calendar="uiConfig.calendar"></div>
+  </ion-content>
+</ion-view>

@@ -1,0 +1,54 @@
+<ion-view view-title="Search">
+  
+  <ion-nav-buttons side="secondary">
+      <button class="button  button-clear" ng-click="showMap()">Map</button>
+  </ion-nav-buttons>
+  <ion-nav-buttons side="Primary">
+      <button class="button button-clear" ng-click="goHome()">Home</button>
+  </ion-nav-buttons>
+
+  <ion-content class="padding"  delegate-handle="mainScroll">
+
+      <div class="bar bar-header item-input-inset">
+       <!--   <ion-search placeholder="Search a user" filter="search"></ion-search> -->
+       
+          <ion-search 
+              class="search-wrapper-light" 
+              search-Box="searchBox"  
+              placeholder="Search a user" 
+              min-length="0" 
+              model="users" 
+              source="getUsersByName(str)">
+          </ion-search>
+          
+      </div>
+     
+    <div ng-repeat="user in users | filter:searchBox.value" ng-click="optionClick({{user}})" class="item">
+             {{user.name}}
+     </div>
+     
+      
+      <ion-list>
+     <ion-item class="list card item-remove-animate item-avatar item-icon-right" ng-repeat="singleClass in searchClasses" type="item-text-wrap" href="#/tab/search/{{singleClass.id}}">
+       <img ng-src="img/ionic.png"></img>
+         <div>
+            <h2>{{singleClass.name}}</h2>
+            <p>{{singleClass.description}}</p>
+         </div>
+        <i class="icon ion-chevron-right icon-accessory"></i>
+        <ion-option-button class="button-assertive" ng-click="remove(singleClass)">
+          Delete
+        </ion-option-button>
+      </ion-item>
+      </ion-list>
+      
+       <ion-infinite-scroll
+        ng-if="countItem<3"
+        on-infinite="loadMore()"
+        distance="1%"
+        spinner="ios"
+        immediate-check=true>
+      </ion-infinite-scroll>
+
+  </ion-content>
+</ion-view>
