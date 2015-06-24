@@ -595,7 +595,11 @@ angular.module('starter.services', [])
         self.query = function (sql, bindings) {
             bindings = typeof bindings !== 'undefined' ? bindings : [];
             var deferred = $q.defer();
-
+            if(self == null || self.db==null || self.db.transaction)
+            {
+                console.log(self);
+                return;
+            }
             self.db.transaction(function (transaction) {
                 transaction.executeSql(sql, bindings, function (transaction, result) {
                     deferred.resolve(result);
