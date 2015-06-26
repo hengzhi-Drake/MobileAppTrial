@@ -118,7 +118,7 @@ angular.module('starter.controllers', [])
   }
 })
 
-.controller('ChatDetailCtrl', function($scope,app, $stateParams, Chats) {
+.controller('ChatDetailCtrl', function($scope,$stateParams, Chats) {
   $scope.chat = Chats.get($stateParams.chatId);
 })
 
@@ -297,11 +297,14 @@ angular.module('starter.controllers', [])
 
 })
 
-
 .controller('AccountCtrl', function($scope) {
   $scope.settings = {
     enableFriends: true
   };
+  
+ 
+  
+  
 })
 
 .controller('MeCtrl', function ($scope) {
@@ -310,9 +313,23 @@ angular.module('starter.controllers', [])
     };
 })
 
-.controller('homeNewsCtrl', function ($scope,$state,searchClasses) {
+.controller('homeNewsCtrl', function ($scope,$rootScope,$state,X2Test,searchClasses) {
       
      $scope.goSearch = function () {
+         
+         /*
+             var myAccountInfo={};
+              X2Test.test(myAccountInfo,function(result){
+                  alert('Done');
+                  alert(result.Msg);
+                  console.log(result);
+              })
+           */    
+               
+             $rootScope.messgeNumber = 0;
+               
+               
+        
         $state.go('tab.search');
     };
     
@@ -370,7 +387,7 @@ angular.module('starter.controllers', [])
         };
     })
 
-.controller('SearchCtrl', function ($scope, searchClasses,User,$ionicScrollDelegate,$state) {
+.controller('SearchCtrl', function ($scope,$http, searchClasses,User,$ionicScrollDelegate,$state) {
     $scope.searchClasses = searchClasses.all();
     $scope.remove = function (singleClass) {
         searchClasses.remove(singleClass);
@@ -406,7 +423,7 @@ angular.module('starter.controllers', [])
         $scope.searchBox.needFecthing = false;
         $scope.searchBox.value = thisuser.name;
        
-        //need to update results list
+ 
        
        
     };
