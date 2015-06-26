@@ -8,7 +8,7 @@
 
 angular.module('starter', ['ionic', 'starter.controllers', 'starter.services','ui.calendar'])
 
-.run(function($ionicPlatform) {
+.run(function($ionicPlatform,$rootScope) {
   $ionicPlatform.ready(function() {
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
     // for form inputs)
@@ -19,6 +19,9 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services','u
       // org.apache.cordova.statusbar required
       StatusBar.styleLightContent();
     }
+    
+     $rootScope.messgeNumber = 5;
+        
   });
 })
 
@@ -28,6 +31,18 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services','u
   $ionicConfigProvider.navBar.positionPrimaryButtons("left");
   $ionicConfigProvider.navBar.positionSecondaryButtons("right");
  })
+ 
+ .config(['$httpProvider', function($httpProvider) {
+         
+         $httpProvider.defaults.useXDomain = true;
+//$httpProvider.defaults.withCredentials = true;
+delete $httpProvider.defaults.headers.common["X-Requested-With"];
+$httpProvider.defaults.headers.common["Accept"] = "application/json";
+$httpProvider.defaults.headers.common["Content-Type"] = "application/json";
+         
+
+    }
+])
 
 .config(function($stateProvider, $urlRouterProvider) {
 
