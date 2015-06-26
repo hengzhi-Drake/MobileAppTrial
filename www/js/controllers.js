@@ -313,7 +313,7 @@ angular.module('starter.controllers', [])
     };
 })
 
-.controller('homeNewsCtrl', function ($scope,$rootScope,$state,X2Test,searchClasses) {
+.controller('homeNewsCtrl', function ($scope,$rootScope,$state,$ionicLoading,searchClasses) {
       
      $scope.goSearch = function () {
          
@@ -332,6 +332,14 @@ angular.module('starter.controllers', [])
         
         $state.go('tab.search');
     };
+    
+    $ionicLoading.show({
+      template: 'Loading...'
+    });
+        
+    setTimeout(function () {$ionicLoading.show({template: 'Get position...'});}, 5000);
+      
+    setTimeout(function () {$ionicLoading.hide();}, 10000);
     
     $scope.searchClasses = searchClasses.all();
    
@@ -362,8 +370,6 @@ angular.module('starter.controllers', [])
                             scope.getData({str: newValue}).then(function (results) 
                             {
                                 scope.model = results;
-                                console.log('fetching data');
-                                
                             });
                         } 
                         else 
@@ -422,9 +428,6 @@ angular.module('starter.controllers', [])
         $scope.users = [];
         $scope.searchBox.needFecthing = false;
         $scope.searchBox.value = thisuser.name;
-       
- 
-       
        
     };
   
