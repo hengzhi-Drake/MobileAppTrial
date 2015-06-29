@@ -1,7 +1,6 @@
 angular.module('starter.services', [])
 
-
-.factory('searchClasses', function ()
+ .factory('searchClasses', function ()
 {
     var searchClasses = [
         {
@@ -104,6 +103,14 @@ angular.module('starter.services', [])
         }
     };
 
+})
+
+///factory template
+.factory('FTemplate',function(){
+   var self = this;
+   var cmdServerUrl = '';
+   
+   return self;
 })
 
 
@@ -595,7 +602,10 @@ angular.module('starter.services', [])
         self.query = function (sql, bindings) {
             bindings = typeof bindings !== 'undefined' ? bindings : [];
             var deferred = $q.defer();
-
+            if(self == null || self.db==null || self.db.transaction == null)
+            {
+               return;
+            }
             self.db.transaction(function (transaction) {
                 transaction.executeSql(sql, bindings, function (transaction, result) {
                     deferred.resolve(result);
@@ -619,7 +629,8 @@ angular.module('starter.services', [])
 
         return self;
     })
-.factory('User', function($http, DB) {
+    
+.factory('User', function(DB) {
         var self = this;
 
         self.getFirst = function(number) {
@@ -637,6 +648,60 @@ angular.module('starter.services', [])
         };
   return self;
 })
+
+
+.factory('X2Test',function(X2Server){
+    var self = this;
+    self.test = function(accountInfo,callback)
+    {
+        X2Server.login(accountInfo,callback);
+    }
+
+    return self;      
+})
+
+///factory template
+.factory('X2Server',function($http){
+   var self = this;
+   var cmdServerUrl = 'http://drakeau.drakex2.com/ServerCmdCenter.aspx?oper=';
+   
+   ///send a comand to server
+   self.sendCmd = function(cmdName,reqParam,callback){
+         var headers = {
+				'Content-Type': 'application/json',
+				'Accept': 'application/json'
+			};
+        var thisUrl = cmdServerUrl+cmdName;                
+        $http({method: "POST",headers: headers,url: thisUrl,data: reqParam})
+        .success(function(result) 
+           {
+               callback.call(self,result);
+           })
+        .error(function(data, status, headers, config) 
+           {
+              var resultObj = {
+                  'Result':false,
+                  'data':data,
+                  'status':status,
+                  'headers':headers,
+                  'config':config,
+                  'Msg':'Error from http request'+status
+              };
+              callback.call(self,resultObj);                       
+          });
+   };
+   
+   //login
+   self.login = function(accountInfo,callback){
+       var cmdName = "HBO_TestNews";
+       self.sendCmd(cmdName,accountInfo,callback);
+   }
+   
+   return self;
+})
+
+//Here's ini entry
 .run(function(DB){
   DB.init();
+ 
 });
