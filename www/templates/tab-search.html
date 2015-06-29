@@ -22,11 +22,15 @@
           </ion-search>
           
       </div>
-     
+      
     <div ng-repeat="user in users | filter:searchBox.value" ng-click="optionClick({{user}})" class="item">
              {{user.name}}
      </div>
      
+      
+      
+      
+      
       
       <ion-list>
      <ion-item class="list card item-remove-animate item-avatar item-icon-right" ng-repeat="singleClass in searchClasses" type="item-text-wrap" href="#/tab/search/{{singleClass.id}}">
@@ -49,6 +53,8 @@
         spinner="ios"
         immediate-check=true>
       </ion-infinite-scroll>
+      
+     
 
   </ion-content>
 </ion-view>
