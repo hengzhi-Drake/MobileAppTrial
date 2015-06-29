@@ -20,7 +20,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services','u
       StatusBar.styleLightContent();
     }
     
-     $rootScope.messgeNumber = 5;
+     $rootScope.messgeNumber = 2;
         
   });
 })
