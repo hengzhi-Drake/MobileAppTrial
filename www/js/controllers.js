@@ -286,7 +286,7 @@ angular.module('starter.controllers', [])
                 $scope.map.setCenter(new google.maps.LatLng(pos.coords.latitude, pos.coords.longitude));
                 $scope.loading.hide();
             }, function (error) {
-                alert('Unable to get location: ' + error.message);
+                alert('Unable to get location : ' + error.message);
             });
         };
 
@@ -303,7 +303,7 @@ angular.module('starter.controllers', [])
   };
   
  
-  
+      
   
 })
 
