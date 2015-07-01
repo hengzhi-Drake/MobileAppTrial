@@ -6,7 +6,7 @@
 
 angular.module('starter.controllers', [])
 
-.controller('homeNewsCtrl', function ($scope,$rootScope,$state,$ionicLoading,searchClasses) {
+.controller('homeNewsCtrl', function ($scope,$rootScope,$cordovaGeolocation,$state,$ionicLoading,searchClasses) {
       
      $scope.goSearch = function () {
             $rootScope.messgeNumber = 0;
@@ -16,9 +16,13 @@ angular.module('starter.controllers', [])
    // $ionicLoading.show({      template: 'Loading...'    });
     
    
+   
+   
     var objthis = this;
     
     //var locationService = $cordovaGeolocation;
+    
+    console.log(navigator);
     
     var locationService = navigator.geolocation; // cordova geolocation plugin
     
@@ -32,13 +36,11 @@ angular.module('starter.controllers', [])
         timeout: 5000,
         maximumAge: 0
     };
-    
-    
+      
     
     
     setTimeout(function () {
-    locationService.getCurrentPosition({enableHighAccuracy: true, timeout: 15000}
-    ).then(function (pos)
+    locationService.getCurrentPosition(function (pos)
     {
             var myLatlng = new google.maps.LatLng(pos.coords.latitude, pos.coords.longitude);
                 var mapOptions = {
@@ -62,7 +64,8 @@ angular.module('starter.controllers', [])
                 $scope.map = map;
            
         
-    });
+    },function(error){},{enableHighAccuracy: true, timeout: 15000}
+    );
     
     },3000);
     
