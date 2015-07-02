@@ -6,7 +6,7 @@
 
 angular.module('starter.controllers', [])
 
-.controller('homeNewsCtrl', function ($scope,$rootScope,$cordovaGeolocation,$state,$ionicLoading,searchClasses) {
+.controller('homeNewsCtrl', function ($scope,$rootScope,$cordovaGeolocation,$ionicPlatform,$state,$ionicLoading,searchClasses) {
       
      $scope.goSearch = function () {
             $rootScope.messgeNumber = 0;
@@ -16,33 +16,16 @@ angular.module('starter.controllers', [])
    // $ionicLoading.show({      template: 'Loading...'    });
     
    
-   
-   
-    var objthis = this;
-    
-    //var locationService = $cordovaGeolocation;
-    
-    console.log(navigator);
-    
-    var locationService = navigator.geolocation; // cordova geolocation plugin
-    
-    if($.isEmptyNull(locationService))
-    {
-        alert('plugin not working');        
-    }
-    
-    var options = {
-        enableHighAccuracy: true,
-        timeout: 5000,
-        maximumAge: 0
-    };
-      
-    
-    
-    setTimeout(function () {
-    locationService.getCurrentPosition(function (pos)
-    {
-            var myLatlng = new google.maps.LatLng(pos.coords.latitude, pos.coords.longitude);
+    $ionicPlatform.ready(function(){
+         //here 
+        
+        var posOptions = {timeout: 10000, enableHighAccuracy: false};
+        $cordovaGeolocation
+          .getCurrentPosition(posOptions)
+          .then(function (pos) 
+           {
+               alert('Got posistion!');
+               var myLatlng = new google.maps.LatLng(pos.coords.latitude, pos.coords.longitude);
                 var mapOptions = {
                     center: myLatlng,
                     zoom: 8,
@@ -62,13 +45,50 @@ angular.module('starter.controllers', [])
                 map.setCenter(myLatlng);
                
                 $scope.map = map;
-           
+               
+               
+               
+          }
+          , 
+          function(err) 
+          {
+            alert('Can not get position:'+err.code+":"+err.message);
+            console.log(err);
+            // error
+          });
+
+
         
-    },function(error){},{enableHighAccuracy: true, timeout: 15000}
-    );
+        
+        
+         console.log($cordovaGeolocation);
+    });
     
-    },3000);
+    //$cordovaGeolocation,
     
+   
+   
+   
+    var objthis = this;
+    
+    var locationService = $cordovaGeolocation;
+    
+    //console.log(navigator);
+    
+    //var locationService = navigator.geolocation; // cordova geolocation plugin
+    
+    if($.isEmptyNull(locationService))
+    {
+        alert('plugin not working');        
+    }
+    
+    var options = {
+        enableHighAccuracy: true,
+        timeout: 5000,
+        maximumAge: 0
+    };
+      
+   
         
    // setTimeout(function () {$ionicLoading.show({template: 'Get position...'});}, 5000);
       
