@@ -35,3 +35,8 @@ IMG.hblogo {
     //color: #ffffff;
     color: #000000;
 }
+
+.scroll-bg {
+  background: url($big-bg) no-repeat center center fixed;
+  background-size: cover;
+}

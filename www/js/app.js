@@ -8,7 +8,7 @@
 
 angular.module('starter', ['ionic','starter.controllers', 'starter.services','ui.calendar','ngCordova'])
 
-.run(function($ionicPlatform,$rootScope) {
+.run(function($ionicPlatform,$rootScope,$cordovaSplashscreen) {
   $ionicPlatform.ready(function() {
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
     // for form inputs)
@@ -21,6 +21,16 @@ angular.module('starter', ['ionic','starter.controllers', 'starter.services','ui
     }
     
      $rootScope.messgeNumber = 2;
+     
+     
+     
+     
+     setTimeout(function() 
+     {
+         alert('to hide');
+    $cordovaSplashscreen.hide();
+    alert('hidden');
+  }, 10);
         
   });
 })

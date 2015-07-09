@@ -19,12 +19,11 @@ angular.module('starter.controllers', [])
     $ionicPlatform.ready(function(){
          //here 
         
-        var posOptions = {timeout: 10000, enableHighAccuracy: false};
+        var posOptions = {timeout: 30000, enableHighAccuracy: false,maximumAge:0};
         $cordovaGeolocation
           .getCurrentPosition(posOptions)
           .then(function (pos) 
            {
-               alert('Got posistion!');
                var myLatlng = new google.maps.LatLng(pos.coords.latitude, pos.coords.longitude);
                 var mapOptions = {
                     center: myLatlng,
@@ -52,7 +51,12 @@ angular.module('starter.controllers', [])
           , 
           function(err) 
           {
-            alert('Can not get position:'+err.code+":"+err.message);
+            alert('Can not get position from cordova plugin:'+err.code+":"+err.message);
+            
+            var locationService = navigator.geolocation; // using html5
+            locationService.getCurrentPosition();
+            
+            
             console.log(err);
             // error
           });
