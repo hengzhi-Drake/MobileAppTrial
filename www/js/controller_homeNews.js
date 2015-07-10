@@ -4,96 +4,19 @@
  * and open the template in the editor.
  */
 
-angular.module('starter.controllers', [])
+angular.module('starter.controllers')
 
-.controller('homeNewsCtrl', function ($scope,$rootScope,$cordovaGeolocation,$ionicPlatform,$state,$ionicLoading,searchClasses) {
+.controller('homeNewsCtrl', function ($scope,$rootScope,$cordovaGeolocation,localNews,$ionicPlatform,$state,$ionicLoading,searchClasses) {
       
      $scope.goSearch = function () {
             $rootScope.messgeNumber = 0;
             $state.go('tab.search');
     };
     
-   // $ionicLoading.show({      template: 'Loading...'    });
-    
    
-    $ionicPlatform.ready(function(){
-         //here 
-        
-        var posOptions = {timeout: 30000, enableHighAccuracy: false,maximumAge:0};
-        $cordovaGeolocation
-          .getCurrentPosition(posOptions)
-          .then(function (pos) 
-           {
-               var myLatlng = new google.maps.LatLng(pos.coords.latitude, pos.coords.longitude);
-                var mapOptions = {
-                    center: myLatlng,
-                    zoom: 8,
-                    mapTypeId: google.maps.MapTypeId.ROADMAP
-                };
-                
-                var domObj =$(".hbx2Mymap")[0];
-                if($.isEmptyNull(domObj) || $.isEmptyNull(domObj)[0])
-                {
-                    console.log(domObj);
-                    alert("dom empty");        
-                    return;
-                }
-               // document.getElementById("map")
-                var map = new google.maps.Map(domObj,
-                    mapOptions);
-                map.setCenter(myLatlng);
-               
-                $scope.map = map;
-               
-               
-               
-          }
-          , 
-          function(err) 
-          {
-            alert('Can not get position from cordova plugin:'+err.code+":"+err.message);
-            
-            var locationService = navigator.geolocation; // using html5
-            locationService.getCurrentPosition();
-            
-            
-            console.log(err);
-            // error
-          });
-
-
-        
-        
-        
-         console.log($cordovaGeolocation);
-    });
-    
-    //$cordovaGeolocation,
-    
+     $scope.localNews = localNews.all();
+     
    
-   
-   
-    var objthis = this;
-    
-    var locationService = $cordovaGeolocation;
-    
-    //console.log(navigator);
-    
-    //var locationService = navigator.geolocation; // cordova geolocation plugin
-    
-    if($.isEmptyNull(locationService))
-    {
-        alert('plugin not working');        
-    }
-    
-    var options = {
-        enableHighAccuracy: true,
-        timeout: 5000,
-        maximumAge: 0
-    };
-      
-   
-        
    // setTimeout(function () {$ionicLoading.show({template: 'Get position...'});}, 5000);
       
    // setTimeout(function () {$ionicLoading.hide();}, 10000);

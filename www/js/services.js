@@ -1,4 +1,47 @@
-angular.module('starter.services', [])
+angular.module('starter.services')
+
+.factory('localNews',function(){
+   var localNews = [
+       {
+            id: 0,
+            title: '6 sigma training Classes open in three days',
+            image: 'img/drakelogo.jpg',
+            shortDescription: '3 timeber top dr ave , Just very nearby your home. Drake is there waitting for you to come!3 timeber top dr ave , Just very nearby your home. Drake is there waitting for you to come!3 timeber top dr ave , Just very nearby your home. Drake is there waitting for you to come!'
+        },
+        {
+            id: 1,
+            title: 'Time managment training 1',
+            image: 'img/drakelogo.jpg',
+            shortDescription: '3 timeber top dr ave'
+        },
+        {
+            id: 2,
+            title: 'Piano training 1',
+            image: 'img/drakelogo.jpg',
+            shortDescription: '3 timeber top dr ave'
+        },
+        {
+            id: 3,
+            title: 'Piano training 1',
+            image: 'img/drakelogo.jpg',
+            shortDescription: '3 timeber top dr ave'
+        }
+   ];
+    return {
+        all: function () {
+            return localNews;
+        },
+        get: function (classId) {
+            for (var i = 0; i < localNews.length; i++) {
+                if (localNews[i].id === parseInt(classId)) {
+                    return localNews[i];
+                }
+            }
+            return null;
+        }
+    };
+})
+
 
  .factory('searchClasses', function ()
 {
@@ -108,8 +151,7 @@ angular.module('starter.services', [])
 ///factory template
 .factory('FTemplate',function(){
    var self = this;
-   var cmdServerUrl = '';
-   
+   var cmdServerUrl = 'img';
    return self;
 })
 
@@ -172,16 +214,34 @@ angular.module('starter.services', [])
         }
     }
 })
-.factory('DB', function($q, DB_CONFIG) {
+.factory('DB', function($q, $cordovaSQLite,$window, DB_CONFIG) {
         var self = this;
         self.db = null;
-        self.init = function () {
+        self.init = function () 
+        {
             if (window.sqlitePlugin)
+            {
+                alert(1);
                 self.db = window.sqlitePlugin.openDatabase({name: DB_CONFIG.name});
-            else if (window.openDatabase)
+            }
+            else if ($cordovaSQLite)
+            {
+                alert(3);
+                console.log($window);
+                console.log($window.sqlitePlugin);
+                self.db = $cordovaSQLite.openDB("my.db");
+            }
+            else
+            {
+                alert(2);
                 self.db = window.openDatabase(DB_CONFIG.name, '1.0', 'database', -1);
-
-            for (var tableName in DB_CONFIG.tables) {
+                
+            }
+            
+            alert('db initialed');
+            
+            for (var tableName in DB_CONFIG.tables) 
+            {
                 var defs = [];
                 var columns = DB_CONFIG.tables[tableName];
                 for (var columnName in columns) {
@@ -606,7 +666,8 @@ angular.module('starter.services', [])
             {
                return;
             }
-            self.db.transaction(function (transaction) {
+            self.db.transaction(function (transaction) 
+            {
                 transaction.executeSql(sql, bindings, function (transaction, result) {
                     deferred.resolve(result);
                 }, function (transaction, error) {
@@ -660,6 +721,7 @@ angular.module('starter.services', [])
     return self;      
 })
 
+
 ///factory template
 .factory('X2Server',function($http){
    var self = this;
@@ -701,7 +763,10 @@ angular.module('starter.services', [])
 })
 
 //Here's ini entry
-.run(function(DB){
-  DB.init();
+.run(function(DB,$ionicPlatform){
+    $ionicPlatform.ready(function() {
+        DB.init();
+    });
+  
  
 });

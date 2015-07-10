@@ -22,15 +22,24 @@ angular.module('starter', ['ionic','starter.controllers', 'starter.services','ui
     
      $rootScope.messgeNumber = 2;
      
+     $rootScope.rimageDir = "img";
+     $rootScope.ggetImg = function(filename){
+          return 'img/'+filename;
+     }
      
-     
-     
+     //to see if is in small
+     if(window.screen.availWidth < 375)
+     {
+         $rootScope.rimageDir = "img/small";     
+     }
+          
      setTimeout(function() 
      {
-         alert('to hide');
-    $cordovaSplashscreen.hide();
-    alert('hidden');
-  }, 10);
+        if(!$.isEmptyNull($cordovaSplashscreen) && !$.isEmptyNull($cordovaSplashscreen.hide))
+        {
+            $cordovaSplashscreen.hide();
+        }
+      }, 5000);
         
   });
 })
@@ -152,3 +161,5 @@ $httpProvider.defaults.headers.common["Content-Type"] = "application/json";
   $urlRouterProvider.otherwise('/tab/homeNews');
 
 });
+angular.module('starter.controllers',[]);
+angular.module('starter.services', []);

@@ -1,4 +1,4 @@
-angular.module('starter.controllers', [])
+angular.module('starter.controllers')
  .controller('SearchMapCtrl', function ($scope, searchClasses, $ionicScrollDelegate,$timeout, $ionicHistory, $state) {
     $scope.showList = function () {
          $state.go('tab.search');
@@ -332,8 +332,13 @@ angular.module('starter.controllers', [])
 
                 if (attrs.source) 
                 {
-                    scope.$watch('searchBox.value', function (newValue, oldValue) {
-                        if (newValue.length > attrs.minLength && scope.searchBox.needFecthing) {
+                    scope.$watch('searchBox.value', function (newValue, oldValue) 
+                    {
+                        if (!$.isEmptyNull(newValue) 
+                                && !$.isEmptyNull(scope.searchBox.needFecthing) 
+                                && (newValue.length > attrs.minLength) 
+                                && (scope.searchBox.needFecthing)) 
+                        {
                             scope.getData({str: newValue}).then(function (results) 
                             {
                                 scope.model = results;
@@ -341,7 +346,10 @@ angular.module('starter.controllers', [])
                         } 
                         else 
                         {
-                            scope.searchBox.needFecthing = true;
+                            if(!$.isEmptyNull(scope.searchBox)) 
+                            {
+                                scope.searchBox.needFecthing = true;
+                            }
                             scope.model = [];
                         }
                     });

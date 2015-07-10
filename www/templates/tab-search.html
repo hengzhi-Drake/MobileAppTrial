@@ -7,30 +7,28 @@
       <button class="button button-clear" ng-click="goHome()">Home</button>
   </ion-nav-buttons>
 
-  <ion-content class="padding"  delegate-handle="mainScroll">
-
-      <div class="bar bar-header item-input-inset">
+  <div class="bar bar-subheader item-input-inset">
        <!--   <ion-search placeholder="Search a user" filter="search"></ion-search> -->
        
-          <ion-search 
+    <ion-search 
               class="search-wrapper-light" 
               search-Box="searchBox"  
               placeholder="Search a user" 
               min-length="0" 
               model="users" 
               source="getUsersByName(str)">
-          </ion-search>
-          
-      </div>
+    </ion-search>
+     <button class="button button-clear" ng-click="goHome()">Search</button>
+ </div>
       
-    <div ng-repeat="user in users | filter:searchBox.value" ng-click="optionClick({{user}})" class="item">
+ <div ng-repeat="user in users | filter:searchBox.value" ng-click="optionClick({{user}})" class="item">
              {{user.name}}
-     </div>
-     
-      
-      
-      
-      
+ </div>
+       
+    
+    
+  <ion-content class="padding has-header has-subheader"  delegate-handle="mainScroll">
+
       
       <ion-list>
      <ion-item class="list card item-remove-animate item-avatar item-icon-right" ng-repeat="singleClass in searchClasses" type="item-text-wrap" href="#/tab/search/{{singleClass.id}}">

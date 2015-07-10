@@ -1,31 +1,42 @@
 <ion-view view-title="Drake International">
-    <ion-nav-buttons side="secondary">
-            <button class="button button-clear" ng-click="goSearch()">Search</button>
-    </ion-nav-buttons>
-  <ion-content>
+    
+  <div class="bar bar-subheader item-input-inset">
+       <!--   <ion-search placeholder="Search a user" filter="search"></ion-search> -->
+       
+    <ion-search 
+              class="search-wrapper-light" 
+              search-Box="searchBox"  
+              placeholder="Search a user" 
+              min-length="0" 
+              model="users" 
+              source="getUsersByName(str)">
+    </ion-search>
+     <button class="button button-clear" ng-click="goSearch()">Search</button>
+ </div>
       
-       <div class="bar bar-header item-input-inset">
+ <div ng-repeat="user in users | filter:searchBox.value" ng-click="optionClick({{user}})" class="item">
+             {{user.name}}
+ </div>
+    
+    
+  <ion-content  class="has-header has-subheader" >
+       <ion-list>
+           
+       <ion-item class="item item-thumbnail-left"
+               ng-repeat="item in localNews"
+               type="item-text-wrap"
+               href="#/tab/search/{{item.id}}">
+         
+       <img ng-src="{{ item.image }}">
+              <h2>{{ item.title }}</h2>
+              <div style="white-space:  normal">{{ item.shortDescription }}</div>
+       </ion-item>
+      <ion-item class="item">
+         <img class="" ng-src="{{ggetImg('drakelogo.jpg')}}"> 
         
-          <div class="item-input-wrapper">
-                    <i class="icon ion-android-search"></i>
-                    <input type="search" placeholder="Input something here" ng-model="search.value">
-                   <i ng-if="true" ng-click="clearSearch()" class="icon ion-close"></i>
-          </div>
-
-      </div>
-    <img class="hblogo" ng-src="img/drakelogo.jpg"/>
-    
-    
-    <div class="hbx2Mymap">This is a test.......</div>
-    
-      <ion-list>
-     <ion-item class="item item-thumbnail-left" ng-repeat="singleClass in searchClasses" type="item-text-wrap" href="#/tab/search/{{singleClass.id}}">
-       <img src="img/drakelogo.jpg">
-              <h2>Pretty Hate Machine</h2>
-              <p>Nine Inch Nails</p>
-      </ion-item>
+         <h4> Updated on 11:20:22 02/12/2017 Vermont</h4>
+     </ion-item>
       </ion-list>
-      
 
   </ion-content>
 </ion-view>
