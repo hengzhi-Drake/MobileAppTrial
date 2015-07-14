@@ -1,5 +1,9 @@
 <ion-view view-title="Drake International">
     
+    <ion-nav-title view-title="Drake International">
+      <img src="img/drakelogo.jpg">
+    </ion-nav-title>
+    
   <div class="bar bar-subheader item-input-inset">
        <!--   <ion-search placeholder="Search a user" filter="search"></ion-search> -->
        
@@ -13,11 +17,8 @@
     </ion-search>
      <button class="button button-clear" ng-click="goSearch()">Search</button>
  </div>
-      
- <div ng-repeat="user in users | filter:searchBox.value" ng-click="optionClick({{user}})" class="item">
-             {{user.name}}
- </div>
-    
+
+ 
     
   <ion-content  class="has-header has-subheader" >
        <ion-list>

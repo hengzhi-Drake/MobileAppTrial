@@ -6,12 +6,13 @@
 // 'starter.services' is found in services.js
 // 'starter.controllers' is found in controllers.js
 
-angular.module('starter', ['ionic','starter.controllers', 'starter.services','ui.calendar','ngCordova'])
+angular.module('starter', ['ionic','starter.controllers','starter.directives','starter.providers', 'starter.services','ui.calendar','ngCordova'])
 
-.run(function($ionicPlatform,$rootScope,$cordovaSplashscreen) {
+.run(function($ionicPlatform,$rootScope,DB,X2Map,$cordovaSplashscreen,dbIni) {
   $ionicPlatform.ready(function() {
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
     // for form inputs)
+     
     if (window.cordova && window.cordova.plugins && window.cordova.plugins.Keyboard) {
       cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
     }
@@ -32,14 +33,46 @@ angular.module('starter', ['ionic','starter.controllers', 'starter.services','ui
      {
          $rootScope.rimageDir = "img/small";     
      }
+     
+     /*
+     var startMs = (new Date).getTime();
+        while(!window.sqlitePlugin){
+            console.log('waiting');
+            var currentMs = (new Date).getTime();
+            if( (currentMs - startMs) > 3000){
+            alert('timed out waiting for database');
+            break;
+        }
+        }
+     */
           
      setTimeout(function() 
      {
+        // alert('START DB INI');
+        DB.init();
+      //  alert('db inied');
+          
+        dbIni.insertAllUser();
+          
+        X2Map.getCurrentPosition(function(pos)
+        {
+                    
+        },function(err){
+              alert("error"+err);
+        });
+          
+          
         if(!$.isEmptyNull($cordovaSplashscreen) && !$.isEmptyNull($cordovaSplashscreen.hide))
         {
+            alert('to hiden aplash');
             $cordovaSplashscreen.hide();
+            alert('splash hidden');
         }
-      }, 5000);
+        else
+        {
+           // alert('cordova splash object empty');
+        }
+      }, 3*1000);
         
   });
 })
@@ -161,5 +194,9 @@ $httpProvider.defaults.headers.common["Content-Type"] = "application/json";
   $urlRouterProvider.otherwise('/tab/homeNews');
 
 });
+
 angular.module('starter.controllers',[]);
 angular.module('starter.services', []);
+angular.module('starter.directives', []);
+angular.module('starter.providers', []);
+

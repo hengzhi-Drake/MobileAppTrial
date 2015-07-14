@@ -4,6 +4,8 @@
  * and open the template in the editor.
  */
 
+
+
 (function($) {
     $.isEmptyNull = function(str) {
         if ($.IsBoolean(str)) {
@@ -28,4 +30,9 @@
         var typeName = typeof(input);
         return typeName == "boolean"
     };
+    
+    
+    
+    
+    
 })(jQuery);

@@ -122,150 +122,69 @@ angular.module('starter.controllers')
   $scope.chat = Chats.get($stateParams.chatId);
 })
 
-.controller('SearchDetailCtrl', function ($scope, $stateParams, searchClasses, $compile,$timeout, $ionicHistory) {
+.controller('SearchDetailCtrl', function ($scope,$ionicPlatform, $stateParams,X2Map, searchClasses, $compile,$timeout, $ionicHistory) {
     $scope.singleClass = searchClasses.get($stateParams.classId);
+   
+    //get the map handle.
+    $scope.mapCreated = function(map) {
+         $scope.map = map;
+    };
+    
+   
+    
+    $scope.setCenter = function(callback)
+    {
+            X2Map.getCurrentPosition(function (pos) {
+            // navigator.geolocation.getCurrentPosition(function (pos) {
+                callback.call(this,pos);
+             }, function (error) {
+                alert('Unable to get location: ' + error.message);
+            });
+          return;
+    };
     
     $scope.goBack = function ()
     {
         $ionicHistory.goBack();
-     }
+    };
      
-     function codeAddress(addressString,callback) 
+     $ionicPlatform.ready(function() 
      {
-          var objthis = this;
-          var geocoder = new google.maps.Geocoder();
-          geocoder.geocode( { 'address': addressString}, function(results, status) 
-          {
-              if (status == google.maps.GeocoderStatus.OK) 
-              {
-                callback.call(objthis,results[0].geometry.location);
-              } else {
-                 alert('Geocode was not successful for the following reason: ' + status);
-              }
-         });
-     }
-     
-     function SetMarker(addressString)
-     {
-         codeAddress(addressString,function(newLocation){
-                var myLocationMarker2 = new google.maps.Marker({
-                       position: newLocation,
-                       map: $scope.map,
-                       title: "My Location from address"
-                });
-
-                 var contentString = "<div><a ng-click='clickTest()'>Click me!</a></div>";
-                 var compiled = $compile(contentString)($scope);
-                 var infowindow = new google.maps.InfoWindow({
-                     content: compiled[0]
-                 });
-                  google.maps.event.addListener(myLocationMarker2, 'click', function () {
-                     infowindow.open($scope.map, myLocationMarker2);
-                  }); 
-         })
-     }
-     
-     function GetCurrentPosition(callback)
-     {
-         var objthis = this;
-           var locationService = navigator.geolocation; // cordova geolocation plugin
-           locationService.getCurrentPosition(
-               function(pos) {
-                   callback.call(objthis,pos);
-               },
-               function(error) {
-                   showError(error);
-               }, 
-               {enableHighAccuracy: true, timeout: 15000}
-           );
-     }
-     
-     function showError(error) {
-         var x = document.getElementById("map");
-            switch(error.code) {
-                case error.PERMISSION_DENIED:
-                    x.innerHTML = "User denied the request for Geolocation."
-                    break;
-                case error.POSITION_UNAVAILABLE:
-                    x.innerHTML = "Location information is unavailable."
-                    break;
-                case error.TIMEOUT:
-                    x.innerHTML = "The request to get user location timed out."
-                    break;
-                case error.UNKNOWN_ERROR:
-                    x.innerHTML = "An unknown error occurred."
-                    break;
-            }
-   }
-
-    function Loadmap()
-    {
-            document.getElementById("map").innerHTML = "Getting your position..";
-            
-            GetCurrentPosition(function(pos) 
+             /*
+          X2Map.getCurrentPosition(function(pos) 
             {
-                document.getElementById("map").innerHTML = "Got your position....";
-                var myLatlng = new google.maps.LatLng(pos.coords.latitude, pos.coords.longitude);
-                var mapOptions = {
-                    center: myLatlng,
-                    zoom: 8,
-                    mapTypeId: google.maps.MapTypeId.ROADMAP
-                };
-                var map = new google.maps.Map(document.getElementById("map"),
-                    mapOptions);
-                map.setCenter(myLatlng);
-               
-                $scope.map = map;
-
-                var myLocationMarker = new google.maps.Marker({
-                        position: new google.maps.LatLng(pos.coords.latitude, pos.coords.longitude),
-                        map: map,
-                        title: "My Location"
-                 });
+               // document.getElementById("map_searchMap").innerHTML="LOADING...";
+                alert('got position , start loading map');
+                               
+                $scope.map = X2Map.loadmap(document.getElementById("map_searchMap"),pos);
+                
+                alert('map loaded!');
+                return;
                 var contentString = "<div><a ng-click='clickTest()'>Click me!</a></div>";
                 var compiled = $compile(contentString)($scope);
-                var infowindow = new google.maps.InfoWindow({
-                    content: compiled[0]
-                });
-                 google.maps.event.addListener(myLocationMarker, 'click', function () {
-                    alert('marker clicked');
-                    infowindow.open(map, myLocationMarker);
-                });
-                                
-                SetMarker('32 timbertop dr vermont vic');
                 
-            });
- 
-           
-
-            /*
-        //Marker + infowindow + angularjs compiled ng-click
-            var contentString = "<div><a ng-click='clickTest()'>Click me!</a></div>";
-
-            var compiled = $compile(contentString)($scope);
-
-            var infowindow = new google.maps.InfoWindow({
-                content: compiled[0]
-            });
-
-            var marker = new google.maps.Marker({
-                position: myLatlng,
-                map: map,
-                title: 'Piano lession(....)'
-            });
-
-            google.maps.event.addListener(marker, 'click', function () {
-                alert('marker clicked');
-                infowindow.open(map, marker);
-            });
-            */
-            
-
-    }
-    
-   $timeout(function(){
-        Loadmap();
+                X2Map.setMarker(pos,compiled[0],$scope.map);
+                
+                X2Map.codeAddress("2 timpertop dr vermont vic",function(AddressPosition){
+                    X2Map.setMarker(AddressPosition,compiled[0],$scope.map);
+                });
+                
+                 X2Map.codeAddress("melbourne",function(AddressPosition){
+                    X2Map.setMarker(AddressPosition,compiled[0],$scope.map);
+                });
+                
+                 X2Map.codeAddress("frankston",function(AddressPosition){
+                    X2Map.setMarker(AddressPosition,compiled[0],$scope.map);
+                });
+                
+         
+         },function(error){X2Map.showError(error,document.getElementById("map_searchMap"))});
+         
+         */
+       
     });
+     
+
 
 
   //  initialize();
@@ -313,60 +232,6 @@ angular.module('starter.controllers')
     };
 })
 
-.directive('ionSearch', function() {
-        return {
-            restrict: 'E',
-            replace: true,
-            scope: {
-                getData: '&source',
-                model: '=?',
-                searchBox: '='
-            },
-            link: function(scope, element, attrs) 
-            {
-                attrs.minLength = attrs.minLength || 0;
-                scope.placeholder = attrs.placeholder || '';
-                              
-                if (attrs.class)
-                    element.addClass(attrs.class);
-
-                if (attrs.source) 
-                {
-                    scope.$watch('searchBox.value', function (newValue, oldValue) 
-                    {
-                        if (!$.isEmptyNull(newValue) 
-                                && !$.isEmptyNull(scope.searchBox.needFecthing) 
-                                && (newValue.length > attrs.minLength) 
-                                && (scope.searchBox.needFecthing)) 
-                        {
-                            scope.getData({str: newValue}).then(function (results) 
-                            {
-                                scope.model = results;
-                            });
-                        } 
-                        else 
-                        {
-                            if(!$.isEmptyNull(scope.searchBox)) 
-                            {
-                                scope.searchBox.needFecthing = true;
-                            }
-                            scope.model = [];
-                        }
-                    });
-                }
-                
-                scope.clearSearch = function() {
-                    scope.searchBox.value = '';
-                    scope.searchBox.needFecthing = true;
-                };
-            },
-            template: ['<div class="item-input-wrapper">' +
-                        '<i class="icon ion-android-search"></i>' +
-                        '<input type="search" placeholder="{{placeholder}}" ng-model="searchBox.value">' +
-                        '<i ng-if="searchBox.value.length > 0" ng-click="clearSearch()" class="icon ion-close"></i>' +
-                      '</div>'].join("")
-        };
-    })
 
 .controller('SearchCtrl', function ($scope,$http, searchClasses,User,$ionicScrollDelegate,$state) {
     $scope.searchClasses = searchClasses.all();
@@ -384,13 +249,24 @@ angular.module('starter.controllers')
     
     
     $scope.users = [];
+    
+    /*  db may not inited, so leave it here
     User.getFirst(15).then(function(users)
     {
         $scope.users = users;
     });
+    */
     
     $scope.getUsersByName = function(str) {
-     return User.getAllByName(str);
+        
+        if(!$.isEmptyNull(str))
+        {
+          return User.getAllByName(str);  
+        }
+        else
+        {
+            return null;
+        }
    };
    
       

@@ -1,12 +1,13 @@
 /* Empty. Add your own CSS if you like */
-.hbx2Mymap {
-  width: 100%;
-  height: 300px;
-  background-color:grey;
-}
 
 .scroll {
   height: 100%;
+}
+
+.mapBox{
+   height:100%;  
+   width:100%;
+   background-color: grey;
 }
 
 IMG.hblogo {
@@ -17,7 +18,6 @@ IMG.hblogo {
     margin-bottom: 20px;
 
 }
-
 
 .bar.item-input-inset .item-input-wrapper input {
     width: 100%;

@@ -15,6 +15,7 @@ angular.module('starter.controllers')
     
    
      $scope.localNews = localNews.all();
+  
      
    
    // setTimeout(function () {$ionicLoading.show({template: 'Get position...'});}, 5000);
