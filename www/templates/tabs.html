@@ -9,21 +9,19 @@ navigation history that also transitions its views in and out.
   <ion-tab title="Search" icon-off="ion-ios-search" icon-on="ion-ios-search-strong" href="#/tab/dash">
     <ion-nav-view name="tab-search"></ion-nav-view>
   </ion-tab>
-
-  <!-- Chats Tab -->
-  <ion-tab title="Classes" icon-off="ion-ios-browsers-outline" icon-on="ion-ios-browsers" href="#/tab/classes">
-    <ion-nav-view name="tab-classes"></ion-nav-view>
-  </ion-tab>
-
-  <!-- Account Tab -->
-  <ion-tab title="Account" icon-off="ion-ios-people-outline"  badge="messgeNumber" badge-style="badge-assertive" icon-on="ion-ios-people" href="#/tab/account">
-    <ion-nav-view name="tab-account"></ion-nav-view>
-  </ion-tab>
-
+  
   <!-- Account Tab -->
   <ion-tab title="Me" icon-off="ion-ios-gear-outline" icon-on="ion-ios-gear" href="#/tab/me">
     <ion-nav-view name="tab-me"></ion-nav-view>
   </ion-tab>
+  
+  <!-- Chats Tab -->
+  <ion-tab title="Classes" icon-off="testIcon" icon-on="testIcon" href="#/tab/classes">
+    <ion-nav-view name="tab-classes"></ion-nav-view>
+  </ion-tab>
 
-
+  <!-- Account Tab -->
+  <ion-tab title="Account" icon-off="ion-ios-people-outline"  ng-if="isBoss()"  badge="messgeNumber" badge-style="badge-assertive" icon-on="ion-ios-people" href="#/tab/account">
+    <ion-nav-view name="tab-account"></ion-nav-view>
+  </ion-tab>
 </ion-tabs>

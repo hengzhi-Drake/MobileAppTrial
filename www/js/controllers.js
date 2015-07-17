@@ -48,6 +48,8 @@ angular.module('starter.controllers')
         }
         // etc...
         ];
+       
+        
         callback(myEvents);
         
         /*
@@ -78,7 +80,7 @@ angular.module('starter.controllers')
      $scope.uiConfig = {
       calendar:{
         height: 450,
-        events:$scope.getEvents,
+        events:null,
         eventClick:$scope.hbEventClick,
         eventLimit: true, 
         scrollTime:'08:00:00',

@@ -6,18 +6,20 @@
 
 angular.module('starter.controllers')
 
-.controller('homeNewsCtrl', function ($scope,$rootScope,$cordovaGeolocation,localNews,$ionicPlatform,$state,$ionicLoading,searchClasses) {
+.controller('homeNewsCtrl', function ($scope,$rootScope,$cordovaGeolocation,$ionicHistory,localNews,$ionicPlatform,$state,$ionicLoading,searchClasses) {
       
      $scope.goSearch = function () {
             $rootScope.messgeNumber = 0;
-            $state.go('tab.search');
+             //$location.path();
+            $state.go('tab.searchMap');
     };
-    
-   
+         $scope.goBack = function ()
+    {
+        $ionicHistory.goBack();
+    };
      $scope.localNews = localNews.all();
   
-     
-   
+  
    // setTimeout(function () {$ionicLoading.show({template: 'Get position...'});}, 5000);
       
    // setTimeout(function () {$ionicLoading.hide();}, 10000);
@@ -26,7 +28,14 @@ angular.module('starter.controllers')
    
    
 })
+      
+ .controller('testSubStateCtrl', function ($scope,$state,$ionicHistory) {
+    $scope.goBack = function ()
+    {
+       // $state.go('tab.classes');
+        $ionicHistory.goBack();
+    }; 
+  });
 
-;
 
 

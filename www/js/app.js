@@ -28,6 +28,10 @@ angular.module('starter', ['ionic','starter.controllers','starter.directives','s
           return 'img/'+filename;
      }
      
+     $rootScope.isBoss = function(){
+         return false;         
+     }
+     
      //to see if is in small
      if(window.screen.availWidth < 375)
      {
@@ -128,6 +132,26 @@ $httpProvider.defaults.headers.common["Content-Type"] = "application/json";
       'tab-search': {
         templateUrl: 'templates/homeNews.html',
         controller: 'homeNewsCtrl'
+      }
+    }
+  })
+  .state('tab.homeNews.testSubState', 
+  {
+    url: '/testSubState',
+    views: {
+      'inception': {
+        templateUrl: 'templates/testSubState.html',
+        controller: "testSubStateCtrl"
+      }
+    }
+  })
+  .state('tab.homeNews.testSubState2', 
+  {
+    url: '/testSubState2',
+    views: {
+      'inception': {
+        templateUrl: 'templates/testSubState_1.html',
+        controller: "testSubStateCtrl"
       }
     }
   })

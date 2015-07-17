@@ -8,6 +8,10 @@ angular.module('starter.services')
 
 .service('dbIni', function(DB){
 
+   this.iniData = function(){
+       
+   };
+
     this.insertAllUser = function(){
     DB.insertAll('users', [
     {

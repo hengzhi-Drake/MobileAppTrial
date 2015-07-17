@@ -1,8 +1,13 @@
-<ion-view view-title="Drake International">
-    
-    <ion-nav-title view-title="Drake International">
+<ion-view view-title="Drake International" >
+   
+  <ion-nav-title view-title="Drake International">
       <img src="img/drakelogo.jpg">
     </ion-nav-title>
+    
+    <ion-nav-buttons side="primary">
+        <button class="button" ng-click="goBack()">Back</button>
+    </ion-nav-buttons>
+    
     
   <div class="bar bar-subheader item-input-inset">
        <!--   <ion-search placeholder="Search a user" filter="search"></ion-search> -->
@@ -18,10 +23,14 @@
      <button class="button button-clear" ng-click="goSearch()">Search</button>
  </div>
 
- 
-    
+  <ion-nav-view name="inception"></ion-nav-view>       
+
   <ion-content  class="has-header has-subheader" >
-       <ion-list>
+       
+       <a ui-sref="tab.homeNews.testSubState">Link to tab.homeNews.testSubState</a><br>
+       <a ui-sref="tab.homeNews.testSubState2">Link to tab.homeNews.testSubState2</a><br>
+      <a href="#/tab/homeNews/testSubState">Link to #/tabs/tab2 URL in href</a><br>
+      <ion-list>
            
        <ion-item class="item item-thumbnail-left"
                ng-repeat="item in localNews"
@@ -38,6 +47,9 @@
          <h4> Updated on 11:20:22 02/12/2017 Vermont</h4>
      </ion-item>
       </ion-list>
+      
+     
+      
 
   </ion-content>
 </ion-view>

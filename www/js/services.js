@@ -1,6 +1,6 @@
 angular.module('starter.services')
 
-.factory('localNews',function(){
+.factory('localNews',function($q){
    var localNews = [
        {
             id: 0,
@@ -38,6 +38,34 @@ angular.module('starter.services')
                 }
             }
             return null;
+        },
+        update:function(){
+            var deferred = $q.defer();
+            
+            var localNewNews = [
+            {
+                 id: 3,
+                 title: '6 sigma training Classes open in three days',
+                 image: 'img/drakelogo.jpg',
+                 shortDescription: '3 timeber top dr ave , Just very nearby your home. Drake is there waitting for you to come!3 timeber top dr ave , Just very nearby your home. Drake is there waitting for you to come!3 timeber top dr ave , Just very nearby your home. Drake is there waitting for you to come!'
+             },
+             {
+                 id: 4,
+                 title: 'Time managment training 1',
+                 image: 'img/drakelogo.jpg',
+                 shortDescription: '3 timeber top dr ave'
+             }];
+         
+             deferred.resolve(localNewNews);
+             console.log('test');
+         /*
+              setTimeout(function () {
+                   //
+                 deferred.reject("error");
+              }, 10000);
+             */
+            return deferred.promise;
+         
         }
     };
 })
