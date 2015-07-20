@@ -76,8 +76,8 @@ angular.module('starter.services')
     var searchClasses = [
         {
             id: 0,
-            name: 'Piano training 1',
-            description: 'This is a description',
+            name: 'Piano training 1 Piano training 1 Piano training 1 Piano training 1',
+            description: 'This is a descriptionThis is a description This is a descriptionThis is a descriptionThis is a description',
             address: '3 timeber top dr ave',
             contact: '03 12345678'
         },

@@ -25,26 +25,31 @@
 
   <ion-nav-view name="inception"></ion-nav-view>       
 
+  
+  <style>
+
+  </style>
+  
   <ion-content  class="has-header has-subheader" >
-       
-       <a ui-sref="tab.homeNews.testSubState">Link to tab.homeNews.testSubState</a><br>
-       <a ui-sref="tab.homeNews.testSubState2">Link to tab.homeNews.testSubState2</a><br>
-      <a href="#/tab/homeNews/testSubState">Link to #/tabs/tab2 URL in href</a><br>
       <ion-list>
-           
        <ion-item class="item item-thumbnail-left"
                ng-repeat="item in localNews"
                type="item-text-wrap"
                href="#/tab/search/{{item.id}}">
          
-       <img ng-src="{{ item.image }}">
-              <h2>{{ item.title }}</h2>
-              <div style="white-space:  normal">{{ item.shortDescription }}</div>
+            <img ng-src="{{ item.image }}">
+              <h2 class="divTitle">{{ item.title }}</h2>
+              <div class="discripDiv">{{ item.shortDescription }}</div>
+              <div class="divDistance">[Vermont]</div>
+              
+              <div class="bottomButtonsDiv">
+                  <div class="bottomBtn">23/12/2015</div>
+              </div>
+              
        </ion-item>
+          
       <ion-item class="item">
-         <img class="" ng-src="{{ggetImg('drakelogo.jpg')}}"> 
-        
-         <h4> Updated on 11:20:22 02/12/2017 Vermont</h4>
+          <div class="divDistance"> Updated on 11:20:22 02/12/2017 Vermont</h4>
      </ion-item>
       </ion-list>
       

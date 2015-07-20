@@ -35,7 +35,21 @@
        <img ng-src="img/ionic.png"></img>
          <div>
             <h2>{{singleClass.name}}</h2>
-            <p>{{singleClass.description}}</p>
+              <div  class="discripDiv">{{singleClass.description}}</div>
+                        
+              <div class="divDistance"><i class="icon-left ion-ios-navigate-outline"> 18KM</i></div>
+              
+              <div class="bottomButtonsDiv">
+                  <div class="bottomBtn"><a ng-click="alert(0)" class="icon-left ion-ios-email-outline"> Message</a></div>
+                  <div class="bottomBtn"><i class="icon-left ion-ios-telephone-outline"> 0398765432</i></div>
+                 <div class="bottomBtn"><i class="icon-left ion-ios-time-outline"> AM,PM[3H]</i></div> 
+              </div>
+              
+               <div class="divReview"><i class="icon-left ion-ios-star-half"> 234</i></div>
+                <div class="divRatesStar">
+                    <i class="icon-left ion-ios-star"></i><i class="icon-left ion-ios-star"></i><i class="icon-left ion-ios-star"></i><i class="icon-left ion-ios-star-half"></i><i class="icon-left ion-ios-star-outline"></i>
+                </div>
+            
          </div>
         <i class="icon ion-chevron-right icon-accessory"></i>
         <ion-option-button class="button-assertive" ng-click="remove(singleClass)">

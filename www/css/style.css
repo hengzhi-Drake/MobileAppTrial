@@ -48,3 +48,64 @@ IMG.hblogo {
   background: url($big-bg) no-repeat center center fixed;
   background-size: cover;
 }
+     
+      
+      .divDistance{
+          position:absolute;
+          font-size: 0.8em;
+          color: grey;
+          right:2px;
+          top:2px;
+      }
+      
+      .divReview{
+          position:absolute;
+          font-size: 0.8em;
+          color: grey;
+          right:2px;
+          bottom:2px;
+      }
+      
+      .divRatesStar{
+          position:absolute;
+          font-size: 0.8em;
+          color: grey;
+          left:2px;
+          bottom:2px;
+      }
+      
+      .bottomButtonsDiv{
+          position:absolute;
+          bottom:5px;
+      }
+      
+      .bottomBtn{
+          float:left;
+          font-size: 0.8em;
+          color: grey;
+          margin-right: 5px;
+      }
+      
+      .itemButton{
+          padding-left: 10px;
+      }
+      
+      .item h2 {
+        padding-right: 60px;
+        font-family: Helvetica, sans-serif;
+        font-weight: bold;
+        margin: 0 0 0px 0;
+        color: #666;
+        font-size: 1em;
+      }
+      
+      .discripDiv {
+          white-space: normal;
+          font-family: Helvetica, sans-serif;
+          font-size: 0.9em;
+          color: #666;
+          margin-bottom: 30px;
+          padding-right: 0px;
+          padding-top:10px;
+          word-wrap: break-word;
+      }
