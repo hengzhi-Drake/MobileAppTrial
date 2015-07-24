@@ -140,7 +140,7 @@ angular.module('starter.controllers')
             // navigator.geolocation.getCurrentPosition(function (pos) {
                 callback.call(this,pos);
              }, function (error) {
-                alert('Unable to get location: ' + error.message);
+               // alert('Unable to get location: ' + error.message);
             });
           return;
     };
@@ -228,10 +228,24 @@ angular.module('starter.controllers')
   
 })
 
-.controller('MeCtrl', function ($scope) {
+.controller('meCtrl', function ($scope) {
+    
+    console.log('MeCtrl running!');        
     $scope.settings = {
         enableFriends: true
     };
+    
+    $scope.test = function()
+    {
+       
+    }
+    
+})
+
+.controller('testSubCtrl',function($scope){
+    
+      console.log('testSubCtrl running!');        
+     
 })
 
 

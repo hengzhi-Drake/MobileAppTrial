@@ -6,7 +6,7 @@
 
 angular.module('starter.controllers')
 
-.controller('homeNewsCtrl', function ($scope,$rootScope,$cordovaGeolocation,$ionicHistory,localNews,$ionicPlatform,$state,$ionicLoading,searchClasses) {
+.controller('homeNewsCtrl', function ($scope,$rootScope,$cordovaSocialSharing,$cordovaGeolocation,$ionicHistory,localNews,$ionicPlatform,$state,$ionicLoading,searchClasses) {
       
      $scope.goSearch = function () {
             $rootScope.messgeNumber = 0;
@@ -18,6 +18,20 @@ angular.module('starter.controllers')
         $ionicHistory.goBack();
     };
      $scope.localNews = localNews.all();
+     
+     $scope.shareOut = function()
+     {
+         console.log($cordovaSocialSharing);
+         alert('s');
+         $cordovaSocialSharing
+    .share('message', 'subject', null, 'http://test.com') // Share via native share sheet
+    .then(function(result) {
+      alert(0);
+    }, function(err) {
+      // An error occured. Show a message to the user
+    });
+         
+     }
   
   
    // setTimeout(function () {$ionicLoading.show({template: 'Get position...'});}, 5000);

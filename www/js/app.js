@@ -114,6 +114,27 @@ $httpProvider.defaults.headers.common["Content-Type"] = "application/json";
     abstract: true,
     templateUrl: "templates/tabs.html"
   })
+  
+   .state('tab.me',{
+        url:'/me',
+        abstract:true,
+         views:{
+            'tab-me':{
+             templateUrl: 'templates/tab-me.html'
+         }
+      }
+    })
+
+ .state('tab.me.testSub', {
+        url: '/testSub',
+        views:{
+            'tab-subView':{
+        templateUrl: 'templates/testSubState.html',
+        controller: 'testSubCtrl'
+         }
+      }
+       
+    })
 
   // Each tab has its own nav history stack:
 
@@ -135,26 +156,7 @@ $httpProvider.defaults.headers.common["Content-Type"] = "application/json";
       }
     }
   })
-  .state('tab.homeNews.testSubState', 
-  {
-    url: '/testSubState',
-    views: {
-      'inception': {
-        templateUrl: 'templates/testSubState.html',
-        controller: "testSubStateCtrl"
-      }
-    }
-  })
-  .state('tab.homeNews.testSubState2', 
-  {
-    url: '/testSubState2',
-    views: {
-      'inception': {
-        templateUrl: 'templates/testSubState_1.html',
-        controller: "testSubStateCtrl"
-      }
-    }
-  })
+ 
   .state('tab.searchMap', {
       url: '/searchMap',
           views: {
@@ -201,18 +203,16 @@ $httpProvider.defaults.headers.common["Content-Type"] = "application/json";
         controller: 'AccountCtrl'
       }
     }
-  })
+  }) 
+   
 
-    .state('tab.me', {
-        url: '/me',
-        views: {
-            'tab-me': {
-                templateUrl: 'templates/tab-me.html',
-                controller: 'MeCtrl'
-            }
-        }
-    })
+   
+    
+   
+    
     ;
+
+  console.log('state defined');
 
   // if none of the above states are matched, use this as the fallback
   $urlRouterProvider.otherwise('/tab/homeNews');

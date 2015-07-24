@@ -1,23 +1,30 @@
-<ion-view view-title="Me">
-    <ion-nav-buttons side="secondary">
-            <button class="button button-clear" ng-click="doSomething()">Register</button>
-    </ion-nav-buttons>
-  <ion-content>
+
+<ion-side-menus>
+  <ion-side-menu-content>
       
-      <img class="hblogo" ng-src="img/drakelogo.jpg"/>
-      <div class="list">
-        <label class="item item-input">
-          <input type="text" placeholder="Email">
-        </label>
-        <label class="item item-input">
-          <input type="password" placeholder="Password">
-        </label>
-       <button class="button button-full button-positive">
-            Sign OnTest
-       </button>
-          
-           
-           
-    </div>
-  </ion-content>
-</ion-view>
+      <ion-nav-bar class="bar-energized nav-title-slide-ios7">
+      </ion-nav-bar>
+      
+    <ion-nav-view name="tab-subView"></ion-nav-view>
+  </ion-side-menu-content>
+
+  <ion-side-menu side="left">
+    <header class="bar bar-header bar-stable">
+      <h1 class="title">This is Menu</h1>
+    </header>
+    <ion-content class="has-header">
+      <ion-list>
+        <ion-item menu-close href="#/tab/me/testSub">
+          Search
+        </ion-item>
+        <ion-item menu-close href="#/tab/me/testSub">
+          Browse
+        </ion-item>
+        <ion-item menu-close href="#/tab/me/testSub">
+          Playlists
+        </ion-item>
+      </ion-list>
+    </ion-content>
+  </ion-side-menu>
+</ion-side-menus>
+    
