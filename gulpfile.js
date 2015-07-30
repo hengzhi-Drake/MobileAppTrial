@@ -11,6 +11,7 @@ var paths = {
   sass: ['./scss/**/*.scss']
 };
 
+
 gulp.task('default', ['sass']);
 
 gulp.task('sass', function(done) {
@@ -49,4 +50,9 @@ gulp.task('git-check', function(done) {
     process.exit(1);
   }
   done();
+});
+
+gulp.task('ionic-serve',function(done){
+    sh.exec('a.bat');
+    done();
 });

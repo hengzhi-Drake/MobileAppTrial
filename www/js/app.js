@@ -1,3 +1,5 @@
+/* global cordova */
+/* global angular */
 // Ionic Starter App
 
 // angular.module is a global place for creating, registering and retrieving Angular modules
@@ -20,6 +22,8 @@ angular.module('starter', ['ionic','starter.controllers','starter.directives','s
       // org.apache.cordova.statusbar required
       StatusBar.styleLightContent();
     }
+    
+     
     
      $rootScope.messgeNumber = 2;
      

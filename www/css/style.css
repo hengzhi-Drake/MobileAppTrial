@@ -7,7 +7,7 @@
 .mapBox{
    height:100%;  
    width:100%;
-   background-color: grey;
+   background-color: grey; 
 }
 
 IMG.hblogo {
@@ -40,7 +40,6 @@ IMG.hblogo {
 }
 
 .search-wrapper-light input, .search-wrapper-light input::-webkit-input-placeholder {
-    //color: #ffffff;
     color: #000000;
 }
 

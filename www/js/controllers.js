@@ -8,6 +8,8 @@ angular.module('starter.controllers')
         $state.go('tab.homeNews');
     };
     
+    
+    
     $scope.hbEventClick = function(calEvent, jsEvent, view) {
 
         alert('Event: ' + calEvent.title);
@@ -20,6 +22,7 @@ angular.module('starter.controllers')
        // $('#calendar').fullCalendar('option', 'height', 700);
 
     };
+    
     
     
     
