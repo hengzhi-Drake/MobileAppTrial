@@ -32,13 +32,12 @@
   
   <ion-content  class="has-header has-subheader" >
       <ion-list>
-       <ion-item class="item item-thumbnail-left"
+       <ion-item class="item noboarder"
                ng-repeat="item in localNews"
                type="item-text-wrap"
                href="#/tab/search/{{item.id}}">
-         
-            <img ng-src="{{ item.image }}">
-              <h2 class="divTitle">{{ item.title }}</h2>
+              
+              <h2 class="divTitle"><span class="icon ion-ios-email"><span> {{ item.title }}</h2>
               <div class="discripDiv">{{ item.shortDescription }}</div>
               <div class="divDistance">[Vermont]</div>
               

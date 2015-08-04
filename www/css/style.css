@@ -89,6 +89,10 @@ IMG.hblogo {
           padding-left: 10px;
       }
       
+      .noboarder{
+        border-width: 0px;
+      }
+      
       .item h2 {
         padding-right: 60px;
         font-family: Helvetica, sans-serif;

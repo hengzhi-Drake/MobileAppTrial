@@ -66,7 +66,7 @@ angular.module('starter', ['ionic','starter.controllers','starter.directives','s
         {
                     
         },function(err){
-              alert("error"+err);
+             // alert("error"+err);
         });
           
           

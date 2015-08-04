@@ -245,9 +245,43 @@ angular.module('starter.controllers')
     
 })
 
-.controller('testSubCtrl',function($scope){
+.controller('testSubCtrl',function($scope,MediaSrv){
     
-      console.log('testSubCtrl running!');        
+      console.log('testSubCtrl running!');
+      
+      $scope.itemcheckedItem ={checked: "test3"};
+      
+      $scope.items = [
+          {name:'test1',checked:false},
+          {name:'test2',checked:true},
+          {name:'test3',checked:true},
+          {name:'test4',checked:true},
+          {name:'test5',checked:true}
+      ];
+      
+      
+      $scope.checkedClick = function(){
+          console.log('user checked');
+          
+          console.log("check :" + $scope.itemcheckedItem.checked);
+          
+          
+          
+          $scope.items.forEach(function(item) {
+               console.log(item.name+":"+item.checked);         
+           }, this);
+            
+           
+      };
+      
+        $scope.playSound = function(){
+                       
+           MediaSrv.loadMedia('media/tada.wav').then(function(media){
+              media.play();
+            });  
+           
+      }
+              
      
 })
 
